@@ -4,7 +4,9 @@ Simple ransomware written in Golang.
 I made this program for educational purposes; there's no harm intended. Ransomware is more and more in the media and that triggered my curiosity.
 
 ### How goransom works
-It iterates through the Windows filesystem, looking for files. Goransom opens the file, encrypts its contents with AES-GCM 256, and continues to the next file. A POST request to the 'decryption' service will be made, containing the AES key encrypted with RSA.
+It iterates through the Windows filesystem, looking for files. Goransom opens the file, encrypts its content with AES-GCM 256, and continues to the next file. In addition, a POST request to the decryption API will be made to ensure that the victim can decrypt his machine after the victim paid the right amount.
+
+The decryption API generates machine-specific executables for victims. This executable is responsible for decrypting the victim's filesystem.
 
 So, the flow is like this:
 1. Encrypt the AES key with RSA
